@@ -1,5 +1,6 @@
 import pygame
 import time
+import sys
 import random
 
 snake_speed = 9
@@ -52,9 +53,11 @@ def game_over():
     time.sleep(2)
     pygame.quit()
     quit()
-
 while True:
     for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            pygame.quit()
+            sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 change_to = 'UP'
@@ -133,3 +136,6 @@ while True:
     pygame.display.update()
 
     fps.tick(snake_speed)
+    
+
+

@@ -1,10 +1,9 @@
 import pygame
-import sys
 
 pygame.init()
 
 # Set up the drawing window
-screen = pygame.display.set_mode([500, 500])
+screen = pygame.display.set_mode((500, 500))
 
 # Set the initial color
 color = (0, 0, 0)
@@ -22,7 +21,7 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if mode == "draw":
                 drawing = True
-                pygame.draw.circle(screen, color, event.pos, 5)
+                pygame.draw.circle(screen, color, event.pos, 2)
             elif mode == "rectangle":
                 start_pos = event.pos
             elif mode == "circle":
@@ -30,7 +29,7 @@ while running:
         elif event.type == pygame.MOUSEBUTTONUP:
             if mode == "rectangle":
                 end_pos = event.pos
-                pygame.draw.rect(screen, color, pygame.Rect(start_pos, (end_pos[0] - start_pos[0], end_pos[1] - start_pos[1])))
+                pygame.draw.rect(screen, color, (start_pos, (end_pos[0] - start_pos[0], end_pos[1] - start_pos[1])))
             elif mode == "circle":
                 radius = int(((center_pos[0] - event.pos[0]) ** 2 + (center_pos[1] - event.pos[1]) ** 2) ** 0.5)
                 pygame.draw.circle(screen, color, center_pos, radius)
@@ -39,7 +38,7 @@ while running:
             if drawing and mode == "draw":
                 pygame.draw.circle(screen, color, event.pos, 5)
             elif mode == "eraser":
-                pygame.draw.circle(screen, (255, 255, 255), event.pos, 10)
+                pygame.draw.circle(screen, (0, 0, 0), event.pos, 10)
 
         # Change modes based on key presses
         elif event.type == pygame.KEYDOWN:
@@ -63,3 +62,10 @@ while running:
 
 # Done! Time to quit.
 pygame.quit()
+'''
+Press r to switch to rectangle drawing mode.
+Press c to switch to circle drawing mode. 
+Press e to switch to eraser mode.
+Press d to switch back to drawing mode.
+Press 1, 2, or 3 to change the color to red, green, or blue.
+'''
